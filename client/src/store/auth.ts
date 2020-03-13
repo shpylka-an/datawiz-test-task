@@ -1,5 +1,6 @@
 import { action, observable } from "mobx";
 import axios from "axios";
+import { ValidationError } from "../types/insex";
 
 export class AuthStore {
   @observable
@@ -80,11 +81,5 @@ export class AuthStore {
       .finally(action(() => (this.loading = false)));
   }
 }
-
-type ValidationError = {
-  msg: string;
-  param: "email" | "password";
-  location: string;
-};
 
 export default new AuthStore();
