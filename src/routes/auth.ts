@@ -24,7 +24,8 @@ auth.post(
       .isEmail()
       .withMessage("Invalid Email"),
     check("password")
-      .exists()
+      .not()
+      .isEmpty()
       .withMessage("Password is required")
   ],
   async (req: Request, res: Response) => {
@@ -41,13 +42,13 @@ auth.post(
 
     if (await bcrypt.compare(password, user.password)) {
       delete user.password;
-      res.send({
+      return res.send({
         user,
         token: "super_secret_token"
       });
     }
 
-    res.status(403).send({
+    return res.status(403).send({
       message: "Invalid Credentials"
     });
   }

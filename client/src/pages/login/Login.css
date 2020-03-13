@@ -1,0 +1,10 @@
+.paper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form {
+    margin-top: 10%!important;
+}
