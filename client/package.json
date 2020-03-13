@@ -12,6 +12,7 @@
     "@types/react-dom": "^16.9.5",
     "antd": "^4.0.2",
     "axios": "^0.19.2",
+    "highcharts": "^8.0.4",
     "mobx": "^5.15.4",
     "mobx-react": "^6.1.8",
     "react": "^16.13.0",

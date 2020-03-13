@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { AuthStore } from "../../store/auth";
 import { inject, observer } from "mobx-react";
 import DashboardTable from "./DashboardTable";
+import Chart from "./Chart";
 
 interface DashboardProps {
   authStore: AuthStore;
@@ -21,6 +22,7 @@ class Dashboard extends Component<DashboardProps> {
     return (
       <div style={{padding: 40}}>
         <DashboardTable/>
+        <Chart/>
       </div>
     );
   }

@@ -62,6 +62,12 @@ class DashboardTable extends Component {
       name: "Joe Black",
       age: 32,
       address: "Sidney No. 1 Lake Park"
+    },
+    {
+      key: 4,
+      name: "Sherlock Holmes",
+      age: 39,
+      address: "221B Baker Street"
     }
   ];
 
@@ -123,7 +129,7 @@ class DashboardTable extends Component {
           columns={columns}
           dataSource={this.data}
           pagination={{
-            pageSizeOptions: ["5", "10", "30", "40"],
+            pageSizeOptions: ["3", "10", "30", "40"],
             showSizeChanger: true
           }}
         />
