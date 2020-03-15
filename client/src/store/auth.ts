@@ -1,6 +1,6 @@
 import { action, observable } from "mobx";
 import axios from "axios";
-import { ValidationError } from "../types/insex";
+import { ValidationError } from "../types";
 
 export class AuthStore {
   @observable
@@ -58,7 +58,7 @@ export class AuthStore {
     this.loading = true;
     this.resetErrors();
 
-    return axios
+    axios
       .post("http://localhost:8080/auth/login", {
         email: this.email,
         password: this.password

@@ -21,7 +21,7 @@ interface LoginProps {
 @observer
 class Login extends Component<LoginProps> {
   onFinish = () => {
-    this.props.authStore.login().then(res => console.log(res));
+    this.props.authStore.login();
   };
 
   onEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +51,7 @@ class Login extends Component<LoginProps> {
           <Form.Item
             label="Email"
             name="email"
-            validateStatus={errors.email ? "error" : undefined}
+            validateStatus={errors.email && "error"}
             help={errors.email || undefined}
             required
           >
@@ -61,7 +61,7 @@ class Login extends Component<LoginProps> {
           <Form.Item
             label="Password"
             name="password"
-            validateStatus={errors.password ? "error" : undefined}
+            validateStatus={errors.password && "error"}
             help={errors.password || undefined}
             required
           >

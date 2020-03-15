@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import { Table, Select } from "antd";
-import { Column, Employee } from "../../types/insex";
-import ResizeableTitle from "./ResizeableTitle";
+import { Employee } from "../../../types";
+import ResizeableTitle from "../resizeable-title";
+import { ResizeCallbackData } from "react-resizable";
+import { ColumnProps } from "antd/es/table";
 
-class DashboardTable extends Component {
+interface DashboardTableState {
+  visibleColumns: String[];
+  columns: ColumnProps<Employee>[];
+}
+
+class DashboardTable extends Component<{}, DashboardTableState> {
   state = {
     visibleColumns: ["Name", "Age", "Address"],
     columns: [
@@ -44,7 +51,7 @@ class DashboardTable extends Component {
     }
   };
 
-  data = [
+  data: Employee[] = [
     {
       key: 1,
       name: "Anne Brown",
@@ -71,9 +78,11 @@ class DashboardTable extends Component {
     }
   ];
 
-  // @ts-ignore
-  handleResize = index => (e, { size }) => {
-    this.setState(({ columns }: any) => {
+  handleResize = (index: number) => (
+    e: MouseEvent,
+    { size }: ResizeCallbackData
+  ) => {
+    this.setState(({ columns }: DashboardTableState) => {
       const nextColumns = [...columns];
       nextColumns[index] = {
         ...nextColumns[index],
@@ -84,11 +93,11 @@ class DashboardTable extends Component {
   };
 
   changeVisibleColumns = (values: Array<String>) => {
-    this.setState(({ columns }: any) => {
+    this.setState(({ columns }: DashboardTableState) => {
       return {
         visibleColumns: [...values],
         columns: [
-          ...columns.map((column: Column) => {
+          ...columns.map((column: any) => {
             return {
               ...column,
               className: !values.includes(column.title) ? "hidden-column" : ""
@@ -100,13 +109,15 @@ class DashboardTable extends Component {
   };
 
   render() {
-    const columns = this.state.columns.map((col: any, index: number) => {
+    const columns = this.state.columns.map((col: any, index) => {
       return {
         ...col,
-        onHeaderCell: (column: Column) => ({
-          width: column.width,
-          onResize: this.handleResize(index)
-        })
+        onHeaderCell: (column: any) => {
+          return {
+            width: column.width,
+            onResize: this.handleResize(index)
+          };
+        }
       };
     });
 
@@ -123,7 +134,7 @@ class DashboardTable extends Component {
             <Select.Option value={item}>{item}</Select.Option>
           ))}
         </Select>
-        <Table
+        <Table<Employee>
           bordered
           components={this.components}
           columns={columns}

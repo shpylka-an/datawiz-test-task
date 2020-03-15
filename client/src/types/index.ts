@@ -10,11 +10,3 @@ export type Employee = {
   age: number,
   address: string
 }
-
-export type Column = {
-  title: string,
-  dataIndex: string,
-  sorter: {},
-  width: number,
-  className?: string
-}

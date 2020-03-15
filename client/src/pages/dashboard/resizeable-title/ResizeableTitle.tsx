@@ -1,6 +1,6 @@
 import React from "react";
 import { Resizable } from "react-resizable";
-import "./ResizeableTitle.css"
+import "./ResizeableTitle.css";
 
 const ResizeableTitle = (props: any) => {
   const { onResize, width, ...restProps } = props;

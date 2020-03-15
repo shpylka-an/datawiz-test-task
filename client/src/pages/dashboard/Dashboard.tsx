@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { AuthStore } from "../../store/auth";
 import { inject, observer } from "mobx-react";
-import DashboardTable from "./DashboardTable";
-import Chart from "./Chart";
+import DashboardTable from "./dashboard-table";
+import Chart from "./chart";
 
 interface DashboardProps {
   authStore: AuthStore;
